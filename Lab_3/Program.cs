@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +20,7 @@ namespace Lab_3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new SecurityForm());
         }
     }
 }

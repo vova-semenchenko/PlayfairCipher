@@ -19,6 +19,8 @@ namespace Lab_3
         public Form1()
         {
             InitializeComponent();
+
+            //Environment.SetEnvironmentVariable("INSTALATION_STATUS", null, EnvironmentVariableTarget.Machine);
         }
 
         private void Form1_Load(object sender, EventArgs e)
