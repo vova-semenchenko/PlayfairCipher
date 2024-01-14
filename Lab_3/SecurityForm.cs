@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Management;
 using Microsoft.VisualBasic.Devices;
 using System.Resources;
+using System.Threading;
 
 namespace Lab_3
 {
@@ -18,33 +19,15 @@ namespace Lab_3
         public SecurityForm()
         {
             InitializeComponent();
-
-            if (IsInstallationLimitExceeded())
-            {
-                MessageBox.Show("You cannot install app. You have more then 4 installation!");
-                this.Close();
-            }
-
             //Environment.SetEnvironmentVariable("INSTALATION_COUNT", null, EnvironmentVariableTarget.Machine);
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {                     
-
-            if ((GetMotherBoardInfo() == "Timi") &&
-                (GetCPUInfo() == "GenuineIntel") &&
-                (GetRAMInfo() == 16))
-            {                
-                this.Hide();
-                Form1 mainForm = new Form1();
-                mainForm.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show(correctCharacteristics);               
-                this.Close();
-            }
+        {                            
+            this.Hide();
+            Form1 mainForm = new Form1();
+            mainForm.ShowDialog();
+            this.Close();
         }
 
         private string GetMotherBoardInfo()
@@ -126,6 +109,23 @@ namespace Lab_3
             }
 
             return result;
+        }
+
+        private void SecurityForm_Load(object sender, EventArgs e)
+        {
+            if (IsInstallationLimitExceeded())
+            {
+                MessageBox.Show("You cannot install app. You have more then 4 installation!");
+                this.Close();
+            }
+
+            if (!((GetMotherBoardInfo() == "Timi") &&
+                (GetCPUInfo() == "GenuineIntel") &&
+                (GetRAMInfo() == 16)))
+            {
+                MessageBox.Show(correctCharacteristics);
+                this.Close();
+            }                       
         }
     }
 }
