@@ -23,11 +23,28 @@ namespace Lab_3
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {                            
-            this.Hide();
-            Form1 mainForm = new Form1();
-            mainForm.ShowDialog();
-            this.Close();
+        {
+
+            if (IsInstallationLimitExceeded())
+            {
+                MessageBox.Show("You cannot install app. You have more then 4 installation!");
+                this.Close();
+            }
+
+            if (!((GetMotherBoardInfo() == "Timi") &&
+                (GetCPUInfo() == "GenuineIntel") &&
+                (GetRAMInfo() == 16)))
+            {
+                MessageBox.Show(correctCharacteristics);
+                this.Close();
+            }
+            else
+            {
+                this.Hide();
+                Form1 mainForm = new Form1();
+                mainForm.ShowDialog();
+                this.Close();
+            }
         }
 
         private string GetMotherBoardInfo()
@@ -113,19 +130,7 @@ namespace Lab_3
 
         private void SecurityForm_Load(object sender, EventArgs e)
         {
-            if (IsInstallationLimitExceeded())
-            {
-                MessageBox.Show("You cannot install app. You have more then 4 installation!");
-                this.Close();
-            }
-
-            if (!((GetMotherBoardInfo() == "Timi") &&
-                (GetCPUInfo() == "GenuineIntel") &&
-                (GetRAMInfo() == 16)))
-            {
-                MessageBox.Show(correctCharacteristics);
-                this.Close();
-            }                       
+                                 
         }
     }
 }

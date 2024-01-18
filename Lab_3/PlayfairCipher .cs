@@ -27,7 +27,6 @@ namespace Lab_3
 
             cleanKey = new string(cleanKey.Distinct().ToArray());
 
-
             int keyCharIndex = 0;
             for (int i = 0; i < matrix.GetLength(0); i++) 
             {
@@ -82,7 +81,6 @@ namespace Lab_3
                 {
                     preparedText = preparedText.Insert(i + 1, fixlLetter);
                 }
-
             }
 
             if (preparedText.Length % 2 != 0)
